@@ -3,6 +3,23 @@
   border-top: 2px solid #D9D9D9;
 }
 
+.sectionIcon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 48px;
+  height: 48px;
+
+  background-color: #ffd166;
+  border-radius: 50%;
+}
+
+.sectionIcon>span {
+  font-size: 26px;
+}
+
 .section>h1 {
   font-size: 15px;
 }
