@@ -1,3 +1,17 @@
-.App {
-  text-align: center;
+.section {
+  min-height: 65px;
+  border-top: 2px solid #D9D9D9;
+}
+
+.section>h1 {
+  font-size: 15px;
+}
+
+#Section-Filter {
+}
+
+#Section-Suggestion {
+}
+
+#Section-Pinned {
 }
