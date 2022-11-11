@@ -3,6 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import FilterToggle from './FilterToggle';
 import { filtersAlcohol, filtersDrinkType, filtersIngredients } from './Filters';
+import SectionHeader from './SectionHeader';
 
 
 function FilterSection() {
@@ -38,10 +39,7 @@ function FilterSection() {
     return (
         <>
             <div id='Section-Filter' className='section'>
-                <div className="sectionIcon clickable" onClick={handleShow}>
-                    <span className="material-icons-outlined">filter_list</span>
-                </div>
-                <h1>Active Filters</h1>
+                <SectionHeader sectionTitle="Active Filters" sectionIcon="filter_list" sectionIconAction={handleShow}></SectionHeader>
             </div>
 
             <Modal show={show} onHide={handleClose} className="filterModal">

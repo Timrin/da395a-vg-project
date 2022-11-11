@@ -1,4 +1,5 @@
 import DrinkCard from "./DrinkCard";
+import SectionHeader from "./SectionHeader";
 
 function SuggestionSection(props) {
 
@@ -84,14 +85,9 @@ function SuggestionSection(props) {
     ]
 
     return (
-        <div id='Section-Suggestion'>
+        <div id='Section-Suggestion' className='section'>
 
-            <div className="section">
-                <div className="sectionIcon">
-                    <span className="material-icons-outlined">view_carousel</span>
-                </div>
-                <h1>Suggestions</h1>
-            </div>
+            <SectionHeader sectionTitle="Suggestions" sectionIcon="view_carousel"></SectionHeader>
 
             <div className='sectionBody container'>
                 <div className="suggestionWrapper" style={{margin: "30px 0px"}}>

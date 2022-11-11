@@ -1,11 +1,4 @@
-.section {
-  min-height: 65px;
-  border-top: 2px solid #D9D9D9;
 
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
 
 .sectionIcon {
   display: flex;
@@ -77,6 +70,27 @@ Filter Modal
 
 .filterModal h2 {
   font-size: 1.2rem;
+}
+
+.section {
+  border-top: 2px solid #D9D9D9;
+}
+
+.sectionTitle {
+  font-size: 15px;
+
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  margin: 10px;
+}
+
+.sectionHeader {
+  min-height: 65px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .suggestionWrapper {
