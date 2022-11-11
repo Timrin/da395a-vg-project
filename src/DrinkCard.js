@@ -7,6 +7,10 @@ function DrinkCard(props) {
     return (
         <Card style={{ height: "600px", overflow: "scroll", borderRadius: "20px", border: "none", borderRadius: "20px", boxShadow: "0px 4px 20px 0px rgb(0 0 0 / 50%)", textAlign: "left" }}>
 
+                                    <div className="sectionIcon" style={{position: "absolute", top: "10px", right: "10px", backgroundColor: "#000", color: "#fff", boxShadow: "0px 4px 4px 0px rgb(0 0 0 / 50%)"}}>
+                                        <span className="material-icons-outlined">push_pin</span>
+                                    </div>
+
                                     <Card.Img variant="top" src={drink.imageLink} style={{ height: "250px", objectFit: "cover", objectPosition: "top" }} />
 
                                     <Card.Body style={{ flex: "inherit" }}>
