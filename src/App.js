@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import FilterSection from './FilterSection';
+import SectionHeader from './SectionHeader';
 import SuggestionSection from './SuggestionSection';
 
 function App() {
@@ -13,12 +14,7 @@ function App() {
       <SuggestionSection></SuggestionSection>
 
       <div id='Section-Pinned' className='section'>
-        <div className="sectionHeader container">
-          <div className="sectionIcon">
-            <span className="material-icons-outlined">push_pin</span>
-          </div>
-          <h1 className="sectionTitle">Pinned</h1>
-        </div>
+        <SectionHeader sectionTitle='Pinned' sectionIcon='push_pin'></SectionHeader>
       </div>
 
     </div>
