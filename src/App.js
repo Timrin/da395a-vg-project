@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import FilterSection from './FilterSection';
+import SuggestionSection from './SuggestionSection';
 
 function App() {
   return (
@@ -9,12 +10,7 @@ function App() {
 
       <FilterSection></FilterSection>
 
-      <div id='Section-Suggestion' className='section'>
-        <div className="sectionIcon">
-          <span className="material-icons-outlined">view_carousel</span>
-        </div>
-        <h1>Suggestions</h1>
-      </div>
+      <SuggestionSection></SuggestionSection>
 
       <div id='Section-Pinned' className='section'>
         <div className="sectionIcon">
