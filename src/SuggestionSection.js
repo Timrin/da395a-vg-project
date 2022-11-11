@@ -84,12 +84,28 @@ function SuggestionSection(props) {
     ]
 
     return (
-            <div id='Section-Suggestion' className='section'>
+        <div id='Section-Suggestion'>
+
+            <div className="section">
                 <div className="sectionIcon">
                     <span className="material-icons-outlined">view_carousel</span>
                 </div>
                 <h1>Suggestions</h1>
             </div>
+
+            <div className='sectionBody container'>
+                <div className="suggestionWrapper" style={{margin: "30px 0px"}}>
+                    {
+                        data.map((e) => {
+                            return (
+                                <DrinkCard drink={e}></DrinkCard>
+                            );
+                        })
+                    }
+                </div>
+            </div>
+
+        </div>
     );
 }
 

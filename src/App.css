@@ -78,3 +78,10 @@ Filter Modal
 .filterModal h2 {
   font-size: 1.2rem;
 }
+
+.suggestionWrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 50px;
+}
