@@ -13,11 +13,14 @@ function App() {
       <SuggestionSection></SuggestionSection>
 
       <div id='Section-Pinned' className='section'>
-        <div className="sectionIcon">
-          <span className="material-icons-outlined">push_pin</span>
+        <div className="sectionHeader container">
+          <div className="sectionIcon">
+            <span className="material-icons-outlined">push_pin</span>
+          </div>
+          <h1 className="sectionTitle">Pinned</h1>
         </div>
-        <h1>Pinned</h1>
       </div>
+
     </div>
   );
 }

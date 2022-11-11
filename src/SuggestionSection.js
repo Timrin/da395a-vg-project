@@ -84,13 +84,13 @@ function SuggestionSection(props) {
     ]
 
     return (
-        <div id='Section-Suggestion'>
+        <div id='Section-Suggestion' className='section'>
 
-            <div className="section">
+            <div className="sectionHeader container">
                 <div className="sectionIcon">
                     <span className="material-icons-outlined">view_carousel</span>
                 </div>
-                <h1>Suggestions</h1>
+                <h1 className="sectionTitle">Suggestions</h1>
             </div>
 
             <div className='sectionBody container'>

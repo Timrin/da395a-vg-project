@@ -38,10 +38,12 @@ function FilterSection() {
     return (
         <>
             <div id='Section-Filter' className='section'>
+            <div className="sectionHeader container">
                 <div className="sectionIcon clickable" onClick={handleShow}>
                     <span className="material-icons-outlined">filter_list</span>
                 </div>
-                <h1>Active Filters</h1>
+                <h1 className="sectionTitle">Active Filters</h1>
+            </div>
             </div>
 
             <Modal show={show} onHide={handleClose} className="filterModal">
