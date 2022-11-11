@@ -1,6 +1,10 @@
 .section {
   min-height: 65px;
   border-top: 2px solid #D9D9D9;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .sectionIcon {
@@ -9,8 +13,13 @@
   justify-content: center;
   align-items: center;
 
+  flex-grow: 0;
+  flex-shrink: 0;
+
   width: 48px;
   height: 48px;
+
+  cursor: default;
 
   background-color: #ffd166;
   border-radius: 50%;
@@ -22,13 +31,50 @@
 
 .section>h1 {
   font-size: 15px;
+
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  margin: 10px;
 }
 
-#Section-Filter {
+.clickable {
+  cursor: pointer !important;
 }
 
-#Section-Suggestion {
+/*
+Bean checkboxes
+*/
+.toggle {
+
+  margin-right: 10px;
+  margin-bottom: 10px;
+
+  padding: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  user-select: none;
+
+  background-color: #EBEBEB;
+  border-radius: 100px;
+
+  border: 1px solid #D9D9D9;
 }
 
-#Section-Pinned {
+.checkbox:checked+.toggle {
+  background-color: #FFD166;
+  border: 1px solid #FFD166;
+}
+
+.checkbox {
+  display: none;
+}
+
+/*
+Filter Modal
+*/
+
+.filterModal h2 {
+  font-size: 1.2rem;
 }

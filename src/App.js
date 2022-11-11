@@ -1,17 +1,13 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import FilterSection from './FilterSection';
 
 function App() {
   return (
     <div className="App">
-      <div id='Header' className='section'></div>
+      <div id='Header' className='section container'></div>
 
-      <div id='Section-Filter' className='section'>
-        <div className="sectionIcon">
-          <span className="material-icons-outlined">filter_list</span>
-        </div>
-        <h1>Active Filters</h1>
-      </div>
+      <FilterSection></FilterSection>
 
       <div id='Section-Suggestion' className='section'>
         <div className="sectionIcon">
