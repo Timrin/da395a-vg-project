@@ -1,15 +1,23 @@
 export async function getNewSuggestions(setDrinks) {
-    
-    getRandomDrink(setDrinks)
+    let numSuggestions = 3;
+    let promises = [];
+
+
+    for(let i = 0; i < numSuggestions; i++) {
+        promises.push(getRandomDrink(setDrinks));
+    }
+
+    const drinks = await Promise.all(promises);
+
+    setDrinks(drinks);
 
 }
 
 function getRandomDrink(setDrinks) {
-    fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php")
+    return fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php")
         .then(res => res.json())
         .then(
             (result) => {
-                console.log(result)
                 let resultDrink = result.drinks[0];
 
                 let ingredients = readIngredients(resultDrink);
@@ -23,11 +31,9 @@ function getRandomDrink(setDrinks) {
                     imageLink: resultDrink.strDrinkThumb,
                     ingredients: ingredients
                 }
-
-                console.log(drink)
-
-                setDrinks([drink, drink, drink])
                 
+                return drink;
+
             }, (error) => {
                 console.log(error)
             }
