@@ -1,5 +1,9 @@
+import { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
+import { getNewSuggestions } from "./ApiUtility";
 import DrinkCard from "./DrinkCard";
 import SectionHeader from "./SectionHeader";
+
 
 function SuggestionSection(props) {
 
@@ -84,6 +88,10 @@ function SuggestionSection(props) {
         }
     ]
 
+    const [drinks, setDrinks] = useState([]);
+
+    useEffect(()=>{getNewSuggestions(setDrinks)}, [])
+
     return (
         <div id='Section-Suggestion' className='section'>
 
@@ -92,7 +100,9 @@ function SuggestionSection(props) {
             <div className='sectionBody container'>
                 <div className="suggestionWrapper" style={{margin: "30px 0px"}}>
                     {
-                        data.map((e) => {
+                        
+                        drinks?.map((e) => {
+                            console.log(drinks);
                             return (
                                 <DrinkCard drink={e}></DrinkCard>
                             );
