@@ -22,7 +22,7 @@ function SuggestionSection(props) {
                         drinks?.map((e) => {
                             console.log(drinks);
                             return (
-                                <DrinkCard drink={e} saveDrink={props.saveDrink}></DrinkCard>
+                                <DrinkCard key={e.id} drink={e} pinnedDispatch={props.pinnedDispatch} pinnedState={props.pinnedState}></DrinkCard>
                             );
                         })
                     }
@@ -40,7 +40,7 @@ function SuggestionSection(props) {
                     marginBottom: "30px"
                 }}>
                     New Suggestions
-                    <span class="material-symbols-outlined" style={{paddingLeft: "3px"}}>refresh</span>
+                    <span className="material-symbols-outlined" style={{paddingLeft: "3px"}}>refresh</span>
                 </Button>
 
             </div>

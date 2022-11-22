@@ -15,3 +15,10 @@ export function writeSavedDrinksToLocalStorage(savedDrinks){
     let jsonSavedDrinks = JSON.stringify(savedDrinks)
     localStorage.setItem('drinks', jsonSavedDrinks);
 }
+
+export function removeSavedDrink(drinkToRemove) {
+
+    let savedDrinks = readSavedDrinksFromLocalStorage();
+    savedDrinks = savedDrinks.filter((drink)=>{return drink.id !== drinkToRemove.id});
+    writeSavedDrinksToLocalStorage(savedDrinks);
+}

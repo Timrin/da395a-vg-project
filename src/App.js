@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import './App.css';
+import { drinksReducer } from './DrinksReducer';
 import FilterSection from './FilterSection';
 import PinnedSection from './PinnedSection';
 import { readSavedDrinksFromLocalStorage, writeSavedDrinksToLocalStorage } from './StorageUtility';
@@ -8,27 +9,7 @@ import SuggestionSection from './SuggestionSection';
 
 function App() {
 
-  const [savedDrinks, setSavedDrinks] = useState([]);
-
-  function saveDrink(drink) {
-    //Check for duplicates
-    let isSaved = savedDrinks.some((savedDrink)=>{return (savedDrink.id === drink.id)});
-
-    //Don't add duplicates
-    if(!isSaved) {
-      let newSavedDrinks = [...savedDrinks, drink];
-      
-      setSavedDrinks(newSavedDrinks);
-      writeSavedDrinksToLocalStorage(newSavedDrinks);
-    }
-  }
-
-  useEffect(()=>{
-    //Read saved drinks from local storage
-    let savedDrinks = readSavedDrinksFromLocalStorage();
-
-    setSavedDrinks(savedDrinks)
-  }, [])
+  const [pinnedState, pinnedDispatch] = useReducer(drinksReducer, [], ()=>{return readSavedDrinksFromLocalStorage()});
 
   return (
     <div className="App">
@@ -36,9 +17,9 @@ function App() {
 
       <FilterSection></FilterSection>
 
-      <SuggestionSection saveDrink={saveDrink}></SuggestionSection>
+      <SuggestionSection pinnedDispatch={pinnedDispatch} pinnedState={pinnedState}></SuggestionSection>
 
-      <PinnedSection data={savedDrinks}></PinnedSection>
+      <PinnedSection data={pinnedState}></PinnedSection>
 
     </div>
   );
