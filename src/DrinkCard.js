@@ -3,11 +3,12 @@ import { Accordion, Button, Card, ListGroup } from "react-bootstrap";
 function DrinkCard(props) {
 
     let drink = props.drink;
+    const saveDrink = props.saveDrink;
 
     return (
         <Card style={{ height: "600px", overflow: "scroll", borderRadius: "20px", border: "none", borderRadius: "20px", boxShadow: "0px 4px 20px 0px rgb(0 0 0 / 50%)", textAlign: "left", ...props.style }}>
 
-                                    <div className="sectionIcon" style={{position: "absolute", top: "10px", right: "10px", backgroundColor: "#000", color: "#fff", boxShadow: "0px 4px 4px 0px rgb(0 0 0 / 50%)"}}>
+                                    <div className="sectionIcon" onClick={()=>{saveDrink(drink)}} style={{position: "absolute", top: "10px", right: "10px", backgroundColor: "#000", color: "#fff", boxShadow: "0px 4px 4px 0px rgb(0 0 0 / 50%)"}}>
                                         <span className="material-icons-outlined">push_pin</span>
                                     </div>
 

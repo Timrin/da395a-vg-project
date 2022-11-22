@@ -22,7 +22,7 @@ function SuggestionSection(props) {
                         drinks?.map((e) => {
                             console.log(drinks);
                             return (
-                                <DrinkCard drink={e}></DrinkCard>
+                                <DrinkCard drink={e} saveDrink={props.saveDrink}></DrinkCard>
                             );
                         })
                     }
