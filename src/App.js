@@ -1,8 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import FilterSection from './FilterSection';
 import PinnedSection from './PinnedSection';
+import { readSavedDrinksFromLocalStorage, writeSavedDrinksToLocalStorage } from './StorageUtility';
 import SuggestionSection from './SuggestionSection';
 
 function App() {
@@ -15,9 +16,19 @@ function App() {
 
     //Don't add duplicates
     if(!isSaved) {
-      setSavedDrinks([...savedDrinks, drink])
+      let newSavedDrinks = [...savedDrinks, drink];
+      
+      setSavedDrinks(newSavedDrinks);
+      writeSavedDrinksToLocalStorage(newSavedDrinks);
     }
   }
+
+  useEffect(()=>{
+    //Read saved drinks from local storage
+    let savedDrinks = readSavedDrinksFromLocalStorage();
+
+    setSavedDrinks(savedDrinks)
+  }, [])
 
   return (
     <div className="App">
