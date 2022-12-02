@@ -1,20 +1,23 @@
+import { useContext } from "react";
 import { Accordion, Button, Card, ListGroup } from "react-bootstrap";
 import { ACTION_TYPES } from "./DrinksReducer";
+import { PinnedDrinkContext } from "./PinnedDrinkContext";
 
 function DrinkCard(props) {
 
     let drink = props.drink;
+    let pinnedDrinks = useContext(PinnedDrinkContext)
 
     return (
         <Card style={{ height: "600px", overflow: "scroll", borderRadius: "20px", border: "none", borderRadius: "20px", boxShadow: "0px 4px 20px 0px rgb(0 0 0 / 50%)", textAlign: "left", ...props.style }}>
 
             {
                     drink.pinned ? 
-                    <div className="sectionIcon" onClick={() => { props.pinnedDispatch({ type: ACTION_TYPES.REMOVE_DRINK, payload: drink }) }} style={{ position: "absolute", top: "10px", right: "10px", backgroundColor: "#000", color: "#fff", boxShadow: "0px 4px 4px 0px rgb(0 0 0 / 50%)" }}>
+                    <div className="sectionIcon" onClick={() => { pinnedDrinks.dispatch({ type: ACTION_TYPES.REMOVE_DRINK, payload: drink }) }} style={{ position: "absolute", top: "10px", right: "10px", backgroundColor: "#000", color: "#fff", boxShadow: "0px 4px 4px 0px rgb(0 0 0 / 50%)" }}>
                         <span className="material-icons">push_pin</span>
                     </div>
                     :
-                    <div className="sectionIcon" onClick={() => { props.pinnedDispatch({ type: ACTION_TYPES.ADD_DRINK, payload: drink }) }} style={{ position: "absolute", top: "10px", right: "10px", backgroundColor: "#000", color: "#fff", boxShadow: "0px 4px 4px 0px rgb(0 0 0 / 50%)" }}>
+                    <div className="sectionIcon" onClick={() => { pinnedDrinks.dispatch({ type: ACTION_TYPES.ADD_DRINK, payload: drink }) }} style={{ position: "absolute", top: "10px", right: "10px", backgroundColor: "#000", color: "#fff", boxShadow: "0px 4px 4px 0px rgb(0 0 0 / 50%)" }}>
                         <span className="material-icons-outlined">push_pin</span>
                     </div>
             }

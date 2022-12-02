@@ -10,6 +10,9 @@ function SectionHeader(props) {
                 <span className="material-icons-outlined">{sectionIcon}</span>
             </div>
             <h1 className="sectionTitle">{sectionTitle}</h1>
+            <div>
+                {props.children}
+            </div>
         </div>
     );
 }

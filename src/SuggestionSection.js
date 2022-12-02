@@ -18,11 +18,10 @@ function SuggestionSection(props) {
             <div className='sectionBody container'>
                 <div className="suggestionWrapper" style={{ margin: "30px 0px" }}>
                     {
-
                         drinks?.map((e) => {
                             console.log(drinks);
                             return (
-                                <DrinkCard key={e.id} drink={e} pinnedDispatch={props.pinnedDispatch} pinnedState={props.pinnedState}></DrinkCard>
+                                <DrinkCard key={e.id} drink={e}></DrinkCard>
                             );
                         })
                     }

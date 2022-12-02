@@ -3,23 +3,25 @@ import { useEffect, useReducer, useState } from 'react';
 import './App.css';
 import { drinksReducer } from './DrinksReducer';
 import FilterSection from './FilterSection';
+import { PinnedDrinkContext } from './PinnedDrinkContext';
 import PinnedSection from './PinnedSection';
 import { readSavedDrinksFromLocalStorage, writeSavedDrinksToLocalStorage } from './StorageUtility';
 import SuggestionSection from './SuggestionSection';
 
 function App() {
 
-  const [pinnedState, pinnedDispatch] = useReducer(drinksReducer, [], ()=>{return readSavedDrinksFromLocalStorage()});
+  const [pinnedState, pinnedDispatch] = useReducer(drinksReducer, [], () => { return readSavedDrinksFromLocalStorage() });
 
   return (
     <div className="App">
       <div id='Header' className='section container'></div>
+      <PinnedDrinkContext.Provider value={{state: pinnedState, dispatch: pinnedDispatch}}>
+        <FilterSection></FilterSection>
 
-      <FilterSection></FilterSection>
+        <SuggestionSection></SuggestionSection>
 
-      <SuggestionSection pinnedDispatch={pinnedDispatch} pinnedState={pinnedState}></SuggestionSection>
-
-      <PinnedSection data={pinnedState}></PinnedSection>
+        <PinnedSection></PinnedSection>
+      </PinnedDrinkContext.Provider>
 
     </div>
   );
