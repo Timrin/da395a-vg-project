@@ -22,3 +22,21 @@ export function removeSavedDrink(drinkToRemove) {
     savedDrinks = savedDrinks.filter((drink)=>{return drink.id !== drinkToRemove.id});
     writeSavedDrinksToLocalStorage(savedDrinks);
 }
+
+export function getPinnedSuggestions(setDrinksCallback, amount = 3) {
+    let pinnedDrinks = readSavedDrinksFromLocalStorage();
+
+    let randomDrinks = [];
+    let randomDrinkIndices = [];
+    while (randomDrinkIndices.length < amount) {
+        console.log("randomDrinkIndices lenght: " + randomDrinkIndices.length)
+        let randomIndex = Math.floor(Math.random() * pinnedDrinks.length);
+
+        if (randomDrinkIndices.indexOf(randomIndex) === -1) {
+            randomDrinkIndices.push(randomIndex);
+            randomDrinks.push(pinnedDrinks[randomIndex])
+        }
+    }
+
+    setDrinksCallback(randomDrinks);
+}

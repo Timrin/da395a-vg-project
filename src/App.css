@@ -65,6 +65,55 @@ Bean checkboxes
 }
 
 /*
+Switch checkbox
+*/
+.checkboxSwitch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 26px;
+}
+
+.checkboxSwitch::before {
+  width: 46px;
+  height: 26px;
+  border-radius: 26px;
+
+  position: absolute;
+  content: "";
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ebebeb;
+}
+
+.checkboxSwitch::after {
+  position: absolute;
+  content: "";
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  left: 3px;
+  transition: left 500ms ease;
+  top: 3px;
+  background-color: #ffffff;
+  box-shadow: 1px 1px 10px 0px rgb(0 0 0 / 15%);
+}
+
+.checkboxSwitch:checked::after {
+  background-color: #fff;
+  left: 23px;
+  transition: left 500ms ease;
+}
+
+.checkboxSwitch:checked::before {
+  background-color: #FFD166;
+}
+
+/*
 Filter Modal
 */
 
