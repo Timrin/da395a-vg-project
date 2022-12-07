@@ -23,6 +23,30 @@ export function removeSavedDrink(drinkToRemove) {
     writeSavedDrinksToLocalStorage(savedDrinks);
 }
 
+export function readSetting(setting) {
+    let settings = localStorage.getItem('drink-settings');
+
+    if(settings === null){
+        localStorage.setItem('drink-settings', JSON.stringify({}))
+        return false;
+    }else{
+        settings = JSON.parse(settings);
+        return settings[setting] === 'undefined' ? false : settings[setting];
+    }
+}
+
+export function writeSetting(setting, value) {
+    let settings = localStorage.getItem('drink-settings');
+
+    if(settings === null){
+        localStorage.setItem('drink-settings', JSON.stringify({setting: value}));
+    } else {
+        settings = JSON.parse(settings);
+        settings[setting] = value;
+        localStorage.setItem('drink-settings', JSON.stringify(settings));
+    }
+}
+
 export function getPinnedSuggestions(setDrinksCallback, amount = 3) {
     let pinnedDrinks = readSavedDrinksFromLocalStorage();
 

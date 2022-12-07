@@ -4,14 +4,16 @@ import { getNewSuggestions } from "./ApiUtility";
 import DrinkCard from "./DrinkCard";
 import { PinnedDrinkContext } from "./PinnedDrinkContext";
 import SectionHeader from "./SectionHeader";
-import { getPinnedSuggestions } from "./StorageUtility";
+import { getPinnedSuggestions, readSetting, writeSetting } from "./StorageUtility";
 
 function useToggleMode(onPinned, onRandom) {
-    const [suggestPinned, setSuggestPinned] = useState(false);
+    const [suggestPinned, setSuggestPinned] = useState(()=>{return readSetting('suggestPinned')});
 
     function toggler() {
         const nextSuggestPinned = !suggestPinned;
         setSuggestPinned(nextSuggestPinned);
+        
+        writeSetting('suggestPinned', nextSuggestPinned);
 
         if(nextSuggestPinned) {
             onPinned();
@@ -57,7 +59,7 @@ function SuggestionSection(props) {
 
             <SectionHeader sectionTitle="Suggestions" sectionIcon="view_carousel">
                 <label htmlFor="PinnedSuggestionsCheckbox" style={{marginRight: "10px", marginLeft: "auto"}}> Only Pinned</label>
-                <input type="checkbox" className="checkboxSwitch" id="PinnedSuggestionsCheckbox" value="SuggestPinned" onChange={suggestPinnedToggler}></input>
+                <input type="checkbox" className="checkboxSwitch" id="PinnedSuggestionsCheckbox" value="SuggestPinned" onChange={suggestPinnedToggler} checked={suggestPinned}></input>
             </SectionHeader>
 
             <div className='sectionBody container'>
