@@ -1,32 +1,70 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { getNewSuggestions } from "./ApiUtility";
 import DrinkCard from "./DrinkCard";
+import { PinnedDrinkContext } from "./PinnedDrinkContext";
 import SectionHeader from "./SectionHeader";
 import { getPinnedSuggestions } from "./StorageUtility";
+
+function useToggleMode(onPinned, onRandom) {
+    const [suggestPinned, setSuggestPinned] = useState(false);
+
+    function toggler() {
+        const nextSuggestPinned = !suggestPinned;
+        setSuggestPinned(nextSuggestPinned);
+
+        if(nextSuggestPinned) {
+            onPinned();
+        } else {
+            onRandom();
+        }
+    }
+
+    return [suggestPinned, toggler]
+}
 
 function SuggestionSection(props) {
 
     const [drinks, setDrinks] = useState([]);
-    const [suggestPinned, setSuggestPinned] = useState(false);
+
+    let pinnedDrinks = useContext(PinnedDrinkContext).state;
+
+    const [suggestPinned, suggestPinnedToggler] = useToggleMode(getRandomPinnedSuggestions, ()=>{getNewSuggestions(setDrinks)})
+
+    function getRandomPinnedSuggestions(amount = 3) {
+    
+        let randomDrinks = [];
+        let randomDrinkIndices = [];
+        while (randomDrinkIndices.length < amount) {
+            console.log("randomDrinkIndices lenght: " + randomDrinkIndices.length)
+            let randomIndex = Math.floor(Math.random() * pinnedDrinks.length);
+    
+            if (randomDrinkIndices.indexOf(randomIndex) === -1) {
+                randomDrinkIndices.push(randomIndex);
+                randomDrinks.push(pinnedDrinks[randomIndex])
+            }
+        }
+    
+        setDrinks(randomDrinks);
+    }
 
     useEffect(() => { 
-        suggestPinned ? getPinnedSuggestions(setDrinks) : getNewSuggestions(setDrinks);
-    }, [suggestPinned])
+        suggestPinned ? getRandomPinnedSuggestions() : getNewSuggestions(setDrinks);
+    }, [])
 
     return (
         <div id='Section-Suggestion' className='section'>
 
             <SectionHeader sectionTitle="Suggestions" sectionIcon="view_carousel">
-                <label htmlFor="PinnedSuggestionsCheckbox" style={{marginRight: "10px"}}> Only Pinned</label>
-                <input type="checkbox" className="checkboxSwitch" id="PinnedSuggestionsCheckbox" value="SuggestPinned" onChange={(e)=>{setSuggestPinned(e.target.checked)}}></input>
+                <label htmlFor="PinnedSuggestionsCheckbox" style={{marginRight: "10px", marginLeft: "auto"}}> Only Pinned</label>
+                <input type="checkbox" className="checkboxSwitch" id="PinnedSuggestionsCheckbox" value="SuggestPinned" onChange={suggestPinnedToggler}></input>
             </SectionHeader>
 
             <div className='sectionBody container'>
                 <div className="suggestionWrapper" style={{ margin: "30px 0px" }}>
                     {
                         drinks?.map((e,index) => {
-                            console.log(drinks);
+                            console.log(e);
                             return (
                                 <DrinkCard key={e.id+""+index} drink={e}></DrinkCard>
                             );
@@ -34,7 +72,7 @@ function SuggestionSection(props) {
                     }
                 </div>
 
-                <Button onClick={() => { suggestPinned ? getPinnedSuggestions(setDrinks) : getNewSuggestions(setDrinks) }} style={{
+                <Button onClick={() => { suggestPinned ? getRandomPinnedSuggestions() : getNewSuggestions(setDrinks); }} style={{
                     display: "flex",
                     color: "#fff",
                     fontWeight: "600",
