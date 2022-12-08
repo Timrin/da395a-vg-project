@@ -58,8 +58,10 @@ function SuggestionSection(props) {
         <div id='Section-Suggestion' className='section'>
 
             <SectionHeader sectionTitle="Suggestions" sectionIcon="view_carousel">
-                <label htmlFor="PinnedSuggestionsCheckbox" style={{marginRight: "10px", marginLeft: "auto"}}> Only Pinned</label>
-                <input type="checkbox" className="checkboxSwitch" id="PinnedSuggestionsCheckbox" value="SuggestPinned" onChange={suggestPinnedToggler} checked={suggestPinned}></input>
+                <SectionHeader.QuickAction>
+                    <label htmlFor="PinnedSuggestionsCheckbox" style={{marginRight: "10px"}}> Only Pinned</label>
+                    <input type="checkbox" className="checkboxSwitch" id="PinnedSuggestionsCheckbox" value="SuggestPinned" onChange={suggestPinnedToggler} checked={suggestPinned}></input>
+                </SectionHeader.QuickAction>
             </SectionHeader>
 
             <div className='sectionBody container'>
@@ -86,7 +88,7 @@ function SuggestionSection(props) {
                     marginBottom: "30px"
                 }}>
                     New Suggestions
-                    <span className="material-symbols-outlined" style={{paddingLeft: "3px"}}>refresh</span>
+                    <span className="material-symbols-outlined" style={{ paddingLeft: "3px" }}>refresh</span>
                 </Button>
 
             </div>

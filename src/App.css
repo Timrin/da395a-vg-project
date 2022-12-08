@@ -1,4 +1,49 @@
+.clickable {
+  cursor: pointer !important;
+}
 
+/*
+SectionHeaders
+*/
+.sectionHeader {
+  min-height: 65px;
+  display: grid;
+  grid-template-areas: "headerHead headerBody headerQuickAction";
+  grid-template-columns: max-content auto max-content;
+  grid-template-rows: 1fr;
+}
+
+.sectionHeaderHead {
+  grid-area: headerHead;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.sectionHeaderBody {
+  grid-area: headerBody;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+
+  overflow-y: auto;
+}
+
+.sectionHeaderBody::-webkit-scrollbar {
+  display: none;
+}
+
+.sectionHeaderQuickAction {
+  grid-area: headerQuickAction;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: end;
+}
 
 .sectionIcon {
   display: flex;
@@ -22,17 +67,13 @@
   font-size: 26px;
 }
 
-.section>h1 {
+.sectionTitle {
   font-size: 15px;
 
   flex-grow: 0;
   flex-shrink: 0;
 
   margin: 10px;
-}
-
-.clickable {
-  cursor: pointer !important;
 }
 
 /*
@@ -53,6 +94,8 @@ Bean checkboxes
   border-radius: 100px;
 
   border: 1px solid #D9D9D9;
+
+  white-space: nowrap;
 }
 
 .checkbox:checked+.toggle {
@@ -125,26 +168,98 @@ Filter Modal
   border-top: 2px solid #D9D9D9;
 }
 
-.sectionTitle {
-  font-size: 15px;
-
-  flex-grow: 0;
-  flex-shrink: 0;
-
-  margin: 10px;
-}
-
-.sectionHeader {
-  min-height: 65px;
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
 .suggestionWrapper {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 50px;
+}
+
+.pinnedWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+  overflow: scroll;
+  padding: 30px;
+}
+
+/*
+Switch checkbox
+*/
+.checkboxSwitch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 26px;
+}
+
+.checkboxSwitch::before {
+  width: 46px;
+  height: 26px;
+  border-radius: 26px;
+
+  position: absolute;
+  content: "";
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ebebeb;
+}
+
+.checkboxSwitch::after {
+  position: absolute;
+  content: "";
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  left: 3px;
+  transition: left 500ms ease;
+  top: 3px;
+  background-color: #ffffff;
+  box-shadow: 1px 1px 10px 0px rgb(0 0 0 / 15%);
+}
+
+.checkboxSwitch:checked::after {
+  background-color: #fff;
+  left: 23px;
+  transition: left 500ms ease;
+}
+
+.checkboxSwitch:checked::before {
+  background-color: #FFD166;
+}
+
+/* Search bar */
+.searchBar {
+  width: 250px;
+  padding: 5px 15px;
+  outline: none;
+  border: 1px solid #D9D9D9;
+  border-radius: 100px;
+  font-size: 1rem;
+}
+
+/* Mobile */
+@media screen and (max-width: 900px) {
+  .sectionHeader {
+    min-height: 65px;
+    display: grid;
+    grid-template-areas:
+      "headerTitle  headerQuickAction"
+      "headerBody headerBody";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .suggestionWrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 50px;
+  }
+
 }
