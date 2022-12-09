@@ -34,7 +34,8 @@ function SuggestionSection(props) {
     const [suggestPinned, suggestPinnedToggler] = useToggleMode(getRandomPinnedSuggestions, ()=>{getNewSuggestions(setDrinks)})
 
     function getRandomPinnedSuggestions(amount = 3) {
-    
+        amount = amount > pinnedDrinks.length ? pinnedDrinks.length : amount; //amount can't be greater than available selection
+
         let randomDrinks = [];
         let randomDrinkIndices = [];
         while (randomDrinkIndices.length < amount) {
